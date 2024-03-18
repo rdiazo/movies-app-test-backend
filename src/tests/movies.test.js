@@ -1,5 +1,8 @@
 const request = require('supertest');
 const app = require('../app');
+const Actors = require('../models/Actors');
+const Directors = require('../models/Directors');
+const Genres = require('../models/Genres');
 
 let id;
 
@@ -34,22 +37,59 @@ test('PUT /movies:id debe actualizar una pelicula', async () => {
     expect(res.body.name).toBe(body.name);
 });
 
-test('DELETE /movies/:id debe eliminar un actor', async () => {
-    const res = await request(app).delete(`/movies/${id}`);
-    expect(res.status).toBe(204);
-});
-
-test('POST /movies/:id/actors debe insertar los actores de una pelicula', async () => {
-    const actor = await Actor.create({ 
-        name: "Maribel",
-            });
+test('POST /movies/:id/actors debe insertas los actores de una pelicula', async () => { 
+    const actor = await Actors.create({ 
+        firstName: "Maribel",
+        lastName: "Zambrano",
+        nationality: "Venezolana",
+        image: "https://th.bing.com/th/id/OIP.1pMotA5UJ0HM1Aaf0euODAHaJ4?rs=1&pid=ImgDetMain",
+        birthday: "1975/11/08"
+     });
     const res = await request(app)
-        .post(`/movies/${id}/actors`)
-        .send([movie.id]);
-    await movie.destroy();
+    .post(`/movies/${id}/actors`)
+    .send([actor.id]);
+    await actor.destroy();
     expect(res.status).toBe(200);
     expect(res.body).toBeInstanceOf(Array);
     expect(res.body.length).toBe(1);
-    expect(res.body[0].nationality).toBe('Maribel');
+    expect(res.body[0].firstName).toBe("Maribel");
+});
+
+test('POST /movies/:id/directors debe insertar los directores de una pelicula', async () => { 
+    const director = await Directors.create({ 
+        firstName: "Luis Carlos",
+        lastName: "Hueck",
+        nationality: "Venezolano",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Luis_Carlos_Hueck_director_de_cine_de_Venezuela.jpg/800px-Luis_Carlos_Hueck_director_de_cine_de_Venezuela.jpg",
+        birthday: "1977/05/05"
+     });
+    const res = await request(app)
+    .post(`/movies/${id}/directors`)
+    .send([director.id]);
+    await director.destroy();
+    expect(res.status).toBe(200);
+    expect(res.body).toBeInstanceOf(Array);
+    expect(res.body.length).toBe(1);
+    expect(res.body[0].lastName).toBe("Hueck");
+});
+
+test('POST /movies/:id/genres debe insertar los generos de una pelicula', async () => { 
+    const genre = await Genres.create({ 
+        name: "Action"
+     });
+    const res = await request(app)
+    .post(`/movies/${id}/genres`)
+    .send([genre.id]);
+    await genre.destroy();
+    expect(res.status).toBe(200);
+    expect(res.body).toBeInstanceOf(Array);
+    expect(res.body.length).toBe(1);
+    expect(res.body[0].name).toBe("Action");
+});
+
+
+test('DELETE /movies/:id debe eliminar una pelicula', async () => {
+    const res = await request(app).delete(`/movies/${id}`);
+    expect(res.status).toBe(204);
 });
 

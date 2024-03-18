@@ -5,6 +5,7 @@ let id;
 
 test('GET /actors debe traer todos los actores', async () => {
     const res = await request(app).get('/actors');
+    //console.log(res.body);
     expect(res.status).toBe(200);
 });
 

@@ -8,7 +8,7 @@ test('GET /directors debe traer todos los directores', async () => {
     expect(res.status).toBe(200);
 });
 
-test('POST /directors/crear un actor', async () => {
+test('POST /directors/crear un director', async () => {
     const body = {
         firstName: "Luis C",
         lastName: "Hueck",
@@ -23,7 +23,7 @@ test('POST /directors/crear un actor', async () => {
     expect(res.body.name).toBe(body.name);
 });
 
-test('PUT //directors:id debe actualizar un actor', async () => {
+test('PUT //directors:id debe actualizar un director', async () => {
     const body = {
         firstName: "Luis Carlos",
         lastName: "Hueck",
@@ -36,7 +36,7 @@ test('PUT //directors:id debe actualizar un actor', async () => {
     expect(res.body.name).toBe(body.name);
 });
 
-test('DELETE /directors/:id debe eliminar un actor', async () => {
+test('DELETE /directors/:id debe eliminar un director', async () => {
     const res = await request(app).delete(`/directors/${id}`);
     expect(res.status).toBe(204);
 });

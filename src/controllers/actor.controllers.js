@@ -4,7 +4,7 @@ const Genres = require('../models/Genres');
 const Movies = require('../models/Movies');
 
 const getAll = catchError(async(req, res) => {
-    const results = await Actors.findAll({ include: [ Genres, Movies ] });
+    const results = await Actors.findAll({ include: [ Movies ] });
     return res.json(results);
 });
 
@@ -35,8 +35,6 @@ const update = catchError(async(req, res) => {
     if(result[0] === 0) return res.sendStatus(404);
     return res.json(result[1][0]);
 });
-
-
 
 module.exports = {
     getAll,

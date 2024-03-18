@@ -10,17 +10,15 @@ movieRouter.route('/movies')
 movieRouter.route('/movies/:id')
     .get(getOne)
     .delete(remove)
-    .put(update)
+    .put(update);
 
 movieRouter.route('/movies/:id/genres')
     .post(setMoviesGenres)
 
-
 movieRouter.route('/movies/:id/actors')
-    .post(setMoviesActors) 
-    
-
+    .post(setMoviesActors) ;
+ 
 movieRouter.route('/movies/:id/directors')
-    .post(setMoviesDirectors)
+    .post(setMoviesDirectors);
 
 module.exports = movieRouter;

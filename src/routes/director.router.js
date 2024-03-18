@@ -1,15 +1,15 @@
 const { getAll, create, getOne, remove, update } = require('../controllers/director.controllers');
 const express = require('express');
 
-const directoRouter = express.Router();
+const directorRouter = express.Router();
 
-directoRouter.route('/directors')
+directorRouter.route('/directors')
     .get(getAll)
     .post(create);
 
-directoRouter.route('/directors/:id')
+directorRouter.route('/directors/:id')
     .get(getOne)
     .delete(remove)
     .put(update);
 
-module.exports = directoRouter;
+module.exports = directorRouter;

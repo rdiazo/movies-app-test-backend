@@ -1,7 +1,7 @@
 const express = require('express');
 const genreRouter = require('./genre.router');
 const actorRouter = require('./actor.router');
-const directoRouter = require('./director.router');
+const directorRouter = require('./director.router');
 const movieRouter = require('./movie.router');
 const { setMoviesGenres, setMoviesActors, setMoviesDirectors } = require('../controllers/movie.controllers');
 const router = express.Router();
@@ -9,7 +9,7 @@ const router = express.Router();
 // colocar las rutas aquí
 router.use(genreRouter)
 router.use(actorRouter)
-router.use(directoRouter)
+router.use(directorRouter)
 router.use(movieRouter)
 router.use(setMoviesGenres)
 router.use(setMoviesActors)
