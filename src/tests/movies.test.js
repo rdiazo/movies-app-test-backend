@@ -38,3 +38,18 @@ test('DELETE /movies/:id debe eliminar un actor', async () => {
     const res = await request(app).delete(`/movies/${id}`);
     expect(res.status).toBe(204);
 });
+
+test('POST /movies/:id/actors debe insertar los actores de una pelicula', async () => {
+    const actor = await Actor.create({ 
+        name: "Maribel",
+            });
+    const res = await request(app)
+        .post(`/movies/${id}/actors`)
+        .send([movie.id]);
+    await movie.destroy();
+    expect(res.status).toBe(200);
+    expect(res.body).toBeInstanceOf(Array);
+    expect(res.body.length).toBe(1);
+    expect(res.body[0].nationality).toBe('Maribel');
+});
+
