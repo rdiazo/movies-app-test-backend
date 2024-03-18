@@ -3,12 +3,12 @@ const app = require('../app');
 
 let id;
 
-test('GET /genres debe traer todos los genres', async () => {
+test('GET /genres must bring all genres', async () => {
     const res = await request(app).get('/genres');
     expect(res.status).toBe(200);
 });
 
-test('POST /crear un genero', async () => {
+test('POST / create a genre', async () => {
     const body = {
         name: "Terror",
     }
@@ -19,7 +19,7 @@ test('POST /crear un genero', async () => {
     expect(res.body.name).toBe(body.name);
 });
 
-test('PUT /genres/:id debe actualizar un genero', async () => {
+test('PUT /genres/:id must update a genre', async () => {
     const body = {
         name: "Acction"
     }
@@ -28,7 +28,7 @@ test('PUT /genres/:id debe actualizar un genero', async () => {
     expect(res.body.name).toBe(body.name);
 });
 
-test('DELETE /genres/:id debe eliminar un genero', async () => {
+test('DELETE /genres/:id must eliminate a genre', async () => {
     const res = await request(app).delete(`/genres/${id}`);
     expect(res.status).toBe(204);
 });

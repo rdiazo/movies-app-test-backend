@@ -3,12 +3,12 @@ const app = require('../app');
 
 let id;
 
-test('GET /directors debe traer todos los directores', async () => {
+test('GET /directors you must bring all the directors', async () => {
     const res = await request(app).get('/directors');
     expect(res.status).toBe(200);
 });
 
-test('POST /directors/crear un director', async () => {
+test('POST /directors/ create a director', async () => {
     const body = {
         firstName: "Luis C",
         lastName: "Hueck",
@@ -23,7 +23,7 @@ test('POST /directors/crear un director', async () => {
     expect(res.body.name).toBe(body.name);
 });
 
-test('PUT //directors:id debe actualizar un director', async () => {
+test('PUT //directors:id must update a director', async () => {
     const body = {
         firstName: "Luis Carlos",
         lastName: "Hueck",
@@ -36,7 +36,7 @@ test('PUT //directors:id debe actualizar un director', async () => {
     expect(res.body.name).toBe(body.name);
 });
 
-test('DELETE /directors/:id debe eliminar un director', async () => {
+test('DELETE /directors/:id must remove a director', async () => {
     const res = await request(app).delete(`/directors/${id}`);
     expect(res.status).toBe(204);
 });

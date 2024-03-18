@@ -3,13 +3,13 @@ const app = require('../app');
 
 let id;
 
-test('GET /actors debe traer todos los actores', async () => {
+test('GET /actors you must bring all the actors', async () => {
     const res = await request(app).get('/actors');
     //console.log(res.body);
     expect(res.status).toBe(200);
 });
 
-test('POST /actor/crear un actor', async () => {
+test('POST /actor/ create an actor', async () => {
   const body = {
       firstName: "Maribel",
       lastName: "Zambrano",
@@ -25,7 +25,7 @@ test('POST /actor/crear un actor', async () => {
   expect(res.body.name).toBe(body.name);
 });
 
-test('PUT /actor/:id debe actualizar un actor', async () => {
+test('PUT /actor/:id must update an actor', async () => {
   const body = {
       firstName: "Gladiuska",
       lastName: "Acosta",
@@ -38,7 +38,7 @@ test('PUT /actor/:id debe actualizar un actor', async () => {
   expect(res.body.name).toBe(body.name);
 });
 
-test('DELETE /actors/:id debe eliminar un actor', async () => {
+test('DELETE /actors/:id must remove an actor', async () => {
   const res = await request(app).delete(`/actors/${id}`);
   expect(res.status).toBe(204);
 });
